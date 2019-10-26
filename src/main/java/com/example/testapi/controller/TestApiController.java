@@ -1,6 +1,7 @@
 package com.example.testapi.controller;
 
 
+import com.example.testapi.model.Response;
 import com.example.testapi.model.TestApi;
 import com.example.testapi.repository.TestApiRepository;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -66,10 +67,10 @@ public class TestApiController {
 
     //5
     @DeleteMapping("/{generateid}")
-    public ResponseEntity deleteTestApi(@PathVariable String generateid){
+    public ResponseEntity<Response> deleteTestApi(@PathVariable String generateid){
         TestApi testApi=this.repository.findByGenerateid(generateid);
         this.repository.delete(testApi);
-        return ResponseEntity.status(HttpStatus.OK).body("successfully Delete Operation");
+        return ResponseEntity.ok().body(new Response(HttpStatus.OK,"successfully Delete Operation"));
     }
 
 

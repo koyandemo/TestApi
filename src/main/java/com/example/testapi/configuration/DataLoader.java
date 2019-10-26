@@ -24,18 +24,17 @@ public class DataLoader implements CommandLineRunner {
         testApi.setComplete(true);
         testApi.setTitle("TestApi One");
         testApi.setCreate_at(LocalDate.now());
-        testApi.setUpdate_at(LocalDate.of(2019,10,26));
+
 
 
         TestApi testApitwo = new TestApi();
-        testApitwo.setGenerateid("210987645321//");
+        testApitwo.setGenerateid("210987645321");
         testApitwo.setComplete(true);
         testApitwo.setTitle("TestApi Two");
         testApitwo.setCreate_at(LocalDate.now());
-        testApitwo.setUpdate_at(LocalDate.of(2019,10,26));
 
 
-        //testApiRepository.save(testApi);
-        //testApiRepository.save(testApitwo);
+        testApiRepository.save(testApi);
+        testApiRepository.save(testApitwo);
     }
 }
