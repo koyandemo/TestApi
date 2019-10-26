@@ -3,9 +3,14 @@ package com.example.testapi.controller;
 
 import com.example.testapi.model.TestApi;
 import com.example.testapi.repository.TestApiRepository;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,8 +26,14 @@ public class TestApiController {
 
     //1
     @PostMapping("/create")
-    public void createTestApi(@RequestBody TestApi testApi) {
-        repository.save(testApi);
+    public TestApi createTestApi(@RequestBody TestApi testApi) {
+        testApi.setGenerateid(RandomStringUtils.randomAlphabetic(12));
+        testApi.setCreate_at(LocalDate.now());
+
+        boolean reverse=testApi.getComplete();
+        testApi.setComplete(!testApi.getComplete());
+      return   this.repository.save(testApi);
+
     }
 
     //2
@@ -33,13 +44,13 @@ public class TestApiController {
 
     //3
     @PutMapping("/{generateid}/edit")
-    public void editTestApi(@PathVariable String generateid,@RequestBody TestApi task){
+    public TestApi editTestApi(@PathVariable String generateid,@RequestBody TestApi testapi){
         TestApi test=this.repository.findByGenerateid(generateid);
-        test.setComplete(task.getComplete());
-        test.setTitle(task.getTitle());
-        test.setCreate_at(task.getCreate_at());
-        test.setUpdate_at(task.getUpdate_at());
-        this.repository.save(test);
+        test.setComplete(testapi.getComplete());
+        test.setTitle(testapi.getTitle());
+        test.setCreate_at(test.getCreate_at());
+        test.setUpdate_at(LocalDate.now());
+      return   this.repository.save(test);
     }
 
     //4
@@ -47,6 +58,7 @@ public class TestApiController {
     public TestApi updateComplete(@PathVariable String generateid,@RequestBody TestApi testApi){
         TestApi test=this.repository.findByGenerateid(generateid);
         test.setComplete(testApi.getComplete());
+        test.setUpdate_at(LocalDate.now());
         return  test;
     }
 
@@ -54,10 +66,12 @@ public class TestApiController {
 
     //5
     @DeleteMapping("/{generateid}")
-    public void deleteTestApi(@PathVariable String generateid){
+    public ResponseEntity deleteTestApi(@PathVariable String generateid){
         TestApi testApi=this.repository.findByGenerateid(generateid);
         this.repository.delete(testApi);
+        return ResponseEntity.status(HttpStatus.OK).body("successfully Delete Operation");
     }
+
 
 
     //6

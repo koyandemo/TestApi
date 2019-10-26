@@ -1,5 +1,6 @@
 package com.example.testapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -18,9 +19,11 @@ public class TestApi {
     private String generateid;
     private String title;
     private Boolean complete;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   // @DateTimeFormat(pattern = "yyyy-MM-dd")
+      @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate create_at;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+      @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate update_at;
 
     public TestApi() {
