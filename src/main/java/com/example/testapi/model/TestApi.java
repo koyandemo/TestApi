@@ -28,14 +28,12 @@ public class TestApi {
     private String title;
     private Boolean complete;
 
-
-   // @DateTimeFormat(pattern = "yyyy-MM-dd")
-      @JsonFormat(pattern = "yyyy-MM-dd")
-
-
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
+   @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate create_at;
+
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
-      @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate update_at;
 
 

@@ -34,7 +34,7 @@ public class DataLoader implements CommandLineRunner {
         testApitwo.setCreate_at(LocalDate.now());
 
 
-        testApiRepository.save(testApi);
-        testApiRepository.save(testApitwo);
+      //  testApiRepository.save(testApi);
+       // testApiRepository.save(testApitwo);
     }
 }

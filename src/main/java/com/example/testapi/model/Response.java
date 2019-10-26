@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 public class Response {
 
 
-
     private HttpStatus httpStatus;
     private String message;
 }
